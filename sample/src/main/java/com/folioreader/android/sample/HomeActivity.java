@@ -15,6 +15,7 @@
  */
 package com.folioreader.android.sample;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -81,10 +82,28 @@ public class HomeActivity extends AppCompatActivity
                 if (config == null)
                     config = new Config();
                 config.setAllowedDirection(Config.AllowedDirection.VERTICAL_AND_HORIZONTAL);
-
                 folioReader.setReadLocator(readLocator);
-                folioReader.setConfig(config, true)
-                        .openBook("file:///android_asset/TheSilverChair.epub");
+                folioReader.setConfig(config, true);
+
+                // Path to the EPUB file in the assets folder
+                String epubPath = "assets/TheSilverChair.epub";
+
+                // Check if the file exists in the assets folder
+                try {
+                    AssetManager assetManager = getAssets();
+                    InputStream inputStream = assetManager.open(epubPath);
+
+                    // Only open the book if the file exists
+                    folioReader.openBook(epubPath);
+                } catch (IOException e) {
+                    Log.e("Asset Error", "The EPUB file could not be opened: " + e.getMessage());
+                    // Show a toast message to the user (optional)
+                    Toast.makeText(getApplicationContext(), "Error opening the EPUB file.", Toast.LENGTH_SHORT).show();
+                }
+
+//                folioReader.setReadLocator(readLocator);
+//                folioReader.setConfig(config, true)
+//                        .openBook("file:///android_asset/TheSilverChair.epub");
             }
         });
     }

@@ -106,8 +106,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-jackson:$versions.retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
 
-    implementation "org.readium.kotlin-toolkit:readium-shared:$versions.readium_version"
-    implementation "org.readium.kotlin-toolkit:readium-streamer:$versions.readium_version"
+//    implementation "org.readium.kotlin-toolkit:readium-shared:$versions.readium_version"
+//    implementation "org.readium.kotlin-toolkit:readium-streamer:$versions.readium_version"
 
     // R2 modules
     implementation("com.github.codetoart:r2-shared-kotlin:$versions.r2SharedKotlin") {

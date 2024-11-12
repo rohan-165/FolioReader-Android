@@ -66,8 +66,8 @@ import com.folioreader.util.AppUtil
 import com.folioreader.util.FileUtil
 import com.folioreader.util.UiUtil
 import org.greenrobot.eventbus.EventBus
-import org.readium.r2.shared.publication.Link
-import org.readium.r2.shared.publication.Publication
+import org.readium.r2.shared.Link
+import org.readium.r2.shared.Publication
 import org.readium.r2.streamer.parser.CbzParser
 import org.readium.r2.streamer.parser.EpubParser
 import org.readium.r2.streamer.parser.PubBox
@@ -874,7 +874,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
                 EventBus.getDefault().post(
                     MediaOverlayPlayPauseEvent(
-                        spine!![currentChapterIndex].href, false, true
+                        spine!![currentChapterIndex].href.toString(), false, true
                     )
                 )
                 mediaControllerFragment!!.setPlayButtonDrawable()
@@ -958,7 +958,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private fun getChapterIndex(caseString: String, value: String): Int {
         for (i in spine!!.indices) {
             when (caseString) {
-                Constants.HREF -> if (spine!![i].href == value)
+                Constants.HREF -> if (spine!![i].href.toString() == value)
                     return i
             }
         }
@@ -1025,7 +1025,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     override fun play() {
         EventBus.getDefault().post(
             MediaOverlayPlayPauseEvent(
-                spine!![currentChapterIndex].href, true, false
+                spine!![currentChapterIndex].href.toString(), true, false
             )
         )
     }
@@ -1033,7 +1033,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     override fun pause() {
         EventBus.getDefault().post(
             MediaOverlayPlayPauseEvent(
-                spine!![currentChapterIndex].href, false, false
+                spine!![currentChapterIndex].href.toString(), false, false
             )
         )
     }

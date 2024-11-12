@@ -2,6 +2,8 @@ package com.folioreader;
 
 import android.Manifest;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * Created by mobisys on 10/4/2016.
  */
@@ -30,6 +32,8 @@ public class Constants {
     public static final int WRITE_EXTERNAL_STORAGE_REQUEST = 102;
     public static final String CHAPTER_ID = "id";
     public static final String HREF = "href";
+    @Nullable
+    public static final String LAST_READ_LOCATOR = "LAST_READ_LOCATOR";
 
     public static String[] getWriteExternalStoragePerms() {
         return new String[]{
